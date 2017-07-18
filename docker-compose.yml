@@ -1,0 +1,53 @@
+version: "3.0"
+services:
+  database:
+    image: build.datapunt.amsterdam.nl:5000/atlas/postgres
+    ports:
+      - "5442:5432"
+    environment:
+      POSTGRES_DB: overlastgebieden
+      POSTGRES_USER: overlastgebieden
+      POSTGRES_PASSWORD: insecure
+
+  importer:
+    image: build.datapunt.amsterdam.nl:5000/datapunt/overlastgebieden:${ENVIRONMENT}
+    links:
+      - database
+    environment:
+      BAG_BRK_OBJECTSTORE_PASSWORD: ${BAG_BRK_OBJECTSTORE_PASSWORD}
+      DATABASE_NAME: overlastgebieden
+      DATABASE_USER: overlastgebieden
+      DATABASE_PASSWORD: insecure
+      DATABASE_HOST_OVERRIDE: database
+      DATABASE_PORT_OVERRIDE: 5432
+    command: make runimport
+
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    links:
+      - database
+    environment:
+      BAG_BRK_OBJECTSTORE_PASSWORD: ${BAG_BRK_OBJECTSTORE_PASSWORD}
+      DATABASE_NAME: overlastgebieden
+      DATABASE_USER: overlastgebieden
+      DATABASE_PASSWORD: insecure
+      DATABASE_HOST_OVERRIDE: database
+      DATABASE_PORT_OVERRIDE: 5432
+
+  db-backup:
+    image: build.datapunt.amsterdam.nl:5000/atlas/postgres
+    links:
+      - database:db
+    volumes:
+      - ./backups:/tmp/backups
+    command: >
+      bash -c "echo db:5432:overlastgebieden:overlastgebieden:insecure > ~/.pgpass \
+              && chmod 600 ~/.pgpass \
+              && pg_dump  -Fc \
+                          -T auth*    \
+                          -t overlastgebieden* \
+                          -U overlastgebieden \
+                          -h db -p 5432 \
+                          overlastgebieden > /tmp/backups/database.dump"
