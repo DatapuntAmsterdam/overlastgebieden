@@ -22,6 +22,7 @@ COPY import.sh /app
 COPY flake.cfg /app
 COPY tests /app/tests
 COPY Makefile /app
+COPY docker-compose.yml /app
 
 USER datapunt
 
