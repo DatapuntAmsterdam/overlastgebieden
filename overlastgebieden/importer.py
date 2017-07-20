@@ -77,7 +77,10 @@ def create_view():
                     CREATE MATERIALIZED VIEW geo_overlastgebieden AS
                     SELECT
                       oov."OOV_NAAM" as naam,
-                      oov."TYPE" as type,
+                      oov."OOV_NAAM" as display,
+                      cast('overlastgebieden/overlastgebied' as varchar(50)) as type,
+                      oov."TYPE" as overlastgebied_type,
+                        cast('' as varchar(50)) as uri,
                       oov."geom" AS geometrie
                     FROM
                       "OOV_gebieden_totaal" as oov;
