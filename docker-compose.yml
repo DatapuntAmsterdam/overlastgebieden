@@ -46,8 +46,6 @@ services:
       bash -c "echo db:5432:overlastgebieden:overlastgebieden:insecure > ~/.pgpass \
               && chmod 600 ~/.pgpass \
               && pg_dump  -Fc \
-                          -T auth*    \
-                          -t overlastgebieden* \
                           -U overlastgebieden \
                           -h db -p 5432 \
                           overlastgebieden > /tmp/backups/database.dump"
