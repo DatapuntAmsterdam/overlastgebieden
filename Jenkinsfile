@@ -54,18 +54,6 @@ if (BRANCH == "master") {
         }
     }
 
- #   node {
- #       stage("Deploy to ACC") {
- #           tryStep "deployment", {
- #               build job: 'Subtask_Openstack_Playbook',
- #               parameters: [
- #                   [$class: 'StringParameterValue', name: 'INVENTORY', value: 'acceptance'],
- #                   [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'overlastgebieden.yml'],
- #              ]
- #           }
- #       }
- #   }
-
 
     stage('Waiting for approval') {
         slackSend channel: '#ci-channel', color: 'warning', message: 'Overlastgebieden is waiting for Production Release - please confirm'
@@ -83,15 +71,4 @@ if (BRANCH == "master") {
         }
     }
 
-#    node {
-#        stage("Deploy") {
-#            tryStep "deployment", {
-#                build job: 'Subtask_Openstack_Playbook',
-#                parameters: [
-#                    [$class: 'StringParameterValue', name: 'INVENTORY', value: 'production'],
-#                    [$class: 'StringParameterValue', name: 'PLAYBOOK', value: 'overlastgebieden.yml'],
-#                ]
-#            }
-#        }
-#    }
 }
