@@ -6,8 +6,6 @@
 
     pip install -r requirements.txt
 
-    export DEBUG=True
-
     # Lookup the objectstore password in Rattic
     export BAG_BRK_OBJECTSTORE_PASSWORD=xxxx
 

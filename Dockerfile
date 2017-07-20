@@ -14,14 +14,15 @@ RUN apt-get update \
 
 WORKDIR /app
 
-COPY overlastgebieden /app/overlastgebieden
 COPY requirements.txt /app
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY overlastgebieden /app/overlastgebieden
 COPY import.sh /app
 COPY flake.cfg /app
 COPY tests /app/tests
 COPY Makefile /app
 
-RUN pip install --no-cache-dir -r requirements.txt
 USER datapunt
 
 #CMD uwsgi
