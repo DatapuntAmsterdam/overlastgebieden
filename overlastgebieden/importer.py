@@ -76,6 +76,7 @@ def create_view():
         cur.execute("""
                     CREATE MATERIALIZED VIEW geo_overlastgebieden AS
                     SELECT
+                      oov."OOV_NAAM" as id,
                       oov."OOV_NAAM" as naam,
                       oov."OOV_NAAM" as display,
                       cast('overlastgebieden/overlastgebied' as varchar(50)) as type,

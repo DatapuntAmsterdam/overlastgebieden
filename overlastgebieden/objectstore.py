@@ -29,7 +29,6 @@ os_connect = {
 
 @lru_cache(maxsize=None)
 def get_conn():
-    assert config['key']
     return Connection(**os_connect)
 
 

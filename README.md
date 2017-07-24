@@ -13,8 +13,17 @@
     docker-compose up -d database
 
     # run import
-    docker-compose run app make runimport
+    docker-compose build && docker-compose run app make runimport
+
+    # development in docker
+    # source files kunnen in eigen IDE geedit worden, import draait in docker
+    docker-compose run -v "$PWD"/overlastgebieden:/app/overlastgebieden app bash
+    make runimport
 
     # cleanup
     docker-compose down
+
+    # database inladen vanuit acceptatie
+    docker-compose exec database update-db.sh overlastgebieden
+
 

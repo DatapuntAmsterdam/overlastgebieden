@@ -100,6 +100,9 @@ PG_LOGIN = "host={} port={} dbname={} user={} password={}".format(
     DATABASES['default']['USER'],
     DATABASES['default']['PASSWORD'])
 
+
+assert os.getenv('BAG_BRK_OBJECTSTORE_PASSWORD')
+
 OBJECTSTORE_CONFIG = {
     'user': 'bag_brk',
     'key': os.getenv('BAG_BRK_OBJECTSTORE_PASSWORD', 'insecure'),
