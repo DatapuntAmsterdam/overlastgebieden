@@ -1,5 +1,9 @@
 # Overlastgebieden - import
 
+Importeren van de overlastgebieden kaartlaag.
+Input is een shapefile, deze wordt geimporteerd in de overlastgebieden database
+en met een view beschikbaar gesteld voor de mapserver.
+
 ## Development
 	virtualenv -p /usr/local/bin/python3 ~/venv/overlastgebieden
     source ~/venv/overlastgebieden/bin/activate
@@ -15,8 +19,10 @@
     # run import
     docker-compose build && docker-compose run app make runimport
 
-    # development in docker
-    # source files kunnen in eigen IDE geedit worden, import draait in docker
+    # run import - voor lokale ontwikkeling
+    # de bron code kan in eigen omgeving geedit worden, 
+    # waarna de import gedraaid wordt.
+    
     docker-compose run -v "$PWD"/overlastgebieden:/app/overlastgebieden app bash
     make runimport
 
