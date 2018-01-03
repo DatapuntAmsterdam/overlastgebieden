@@ -1,4 +1,4 @@
-FROM amsterdam/docker
+FROM amsterdam/python
 MAINTAINER datapunt@amsterdam.nl
 
 ENV PYTHONUNBUFFERED 1
