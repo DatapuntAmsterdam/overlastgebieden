@@ -1,6 +1,7 @@
 xmltodict==0.11.0
 flake8==3.5.0
 pytest==3.7.3
+python-dateutil==2.7.3
 python_swiftclient==3.6.0
 python-keystoneclient==3.17.0
 psycopg2-binary==2.7.5
