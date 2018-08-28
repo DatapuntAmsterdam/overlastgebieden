@@ -4,7 +4,6 @@
 import logging
 import os
 from functools import lru_cache
-from datetime import datetime
 from dateutil import parser
 from swiftclient.client import Connection
 from .settings import OBJECTSTORE_CONFIG as config
