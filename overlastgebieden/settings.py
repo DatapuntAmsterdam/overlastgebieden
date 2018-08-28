@@ -28,7 +28,7 @@ def in_docker():
     try:
         cgroup = open('/proc/1/cgroup', 'r').read()
         return ':/docker/' in cgroup or ':/docker-ce/' in cgroup
-    except:
+    except IOError:
         return False
 
 
@@ -64,7 +64,7 @@ DATABASE_OPTIONS = {
         'USER': os.getenv('DATABASE_USER', 'overlastgebieden'),
         'PASSWORD': os.getenv('DATABASE_PASSWORD', 'insecure'),
         'HOST': get_docker_host(),
-        'PORT': '5420'
+        'PORT': '5442'
     },
     Location_key.override: {
         'NAME': os.getenv('DATABASE_NAME', 'overlastgebieden'),
