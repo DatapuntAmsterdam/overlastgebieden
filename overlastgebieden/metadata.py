@@ -27,7 +27,7 @@ def upload(dataset_id, year, month, day):
 
     uri = '{}{}/'.format(metadata_url, dsid)
 
-    moddate = '{:4d}-{:02d}-{:02d}'.format(year, month, day)
+    moddate = '{}-{}-{}'.format(year, month, day)
     datetime.datetime.strptime(moddate, '%Y-%m-%d')
 
     return requests.put(uri, {
