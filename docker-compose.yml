@@ -25,6 +25,7 @@ services:
       DATABASE_PASSWORD: insecure
       DATABASE_HOST_OVERRIDE: database
       DATABASE_PORT_OVERRIDE: 5432
+      ENVIRONMENT:
     command: make runimport
 
   app:
