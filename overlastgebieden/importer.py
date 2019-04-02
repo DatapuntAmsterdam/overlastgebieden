@@ -1,8 +1,10 @@
 """Import shape file. Fill the database.
 
 """
+import os
+import datetime
 
-from overlastgebieden import objectstore, settings
+from overlastgebieden import objectstore, settings, metadata
 import subprocess
 import psycopg2
 
@@ -27,6 +29,10 @@ def run_import():
     convert_shape_to_postgres(file, settings.OGR_PG_LOGIN)
     create_view()
     check_import()
+
+    dataset_id = 'gebieden-ovv'
+    mdate = datetime.date.fromtimestamp(os.path.getmtime(file))
+    metadata.upload(dataset_id, mdate.year, mdate.month, mdate.day)
 
 
 def convert_shape_to_postgres(filename, org_pg_login):

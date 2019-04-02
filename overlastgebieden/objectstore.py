@@ -4,7 +4,7 @@
 import logging
 import os
 from functools import lru_cache
-
+from dateutil import parser
 from swiftclient.client import Connection
 from .settings import OBJECTSTORE_CONFIG as config
 
@@ -36,6 +36,14 @@ def copy_file_from_objectstore(container, file_name, download_dir):
     os.makedirs(download_dir, exist_ok=True)
     destination = download_dir + file_name
     log.info("Download file {} to {}".format(file_name, destination))
+    conn = get_conn()
+    headers = conn.head_object(container, file_name)
+    last_modified = headers.get('last-modified')
+    # print(last_modified)
+    # Mon, 27 Aug 2018 21:55:46 GMT
+    datetime_object = parser.parse(last_modified)
+    epoch_time = int(datetime_object.timestamp())
     with open(destination, 'wb') as f:
-        f.write(get_conn().get_object(container, file_name)[1])
+        f.write(conn.get_object(container, file_name)[1])
+    os.utime(destination, (epoch_time, epoch_time))
     return destination
