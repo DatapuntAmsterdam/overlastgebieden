@@ -1,7 +1,7 @@
 version: "3.0"
 services:
   database:
-    image: build.datapunt.amsterdam.nl:5000/atlas/postgres
+    image: amsterdam/postgres11
     ports:
       - "5442:5432"
     environment:
@@ -15,7 +15,7 @@ services:
         - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
 
   importer:
-    image: build.datapunt.amsterdam.nl:5000/datapunt/overlastgebieden:${ENVIRONMENT}
+    image: repo.data.amsterdam.nl/datapunt/overlastgebieden:${ENVIRONMENT}
     links:
       - database
     environment:
@@ -42,7 +42,7 @@ services:
       DATABASE_PORT_OVERRIDE: 5432
 
   db-backup:
-    image: build.datapunt.amsterdam.nl:5000/atlas/postgres
+    image: repo.data.amsterdam.nl/datapunt/atlas/postgres
     links:
       - database:db
     volumes:
