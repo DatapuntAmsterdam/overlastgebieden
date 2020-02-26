@@ -15,7 +15,7 @@ services:
         - "~/.ssh/datapunt.key:/root/.ssh/datapunt.key"
 
   importer:
-    image: ${DOCKER_REGISTRY_HOST}/datapunt/overlastgebieden:${ENVIRONMENT}
+    image: docker-registry.data.amsterdam.nl/datapunt/overlastgebieden:${ENVIRONMENT}
     links:
       - database
     environment:
