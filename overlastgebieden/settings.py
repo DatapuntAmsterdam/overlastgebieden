@@ -102,11 +102,11 @@ PG_LOGIN = "host={} port={} dbname={} user={} password={}".format(
     DATABASES['default']['PASSWORD'])
 
 
-assert os.getenv('BAG_BRK_OBJECTSTORE_PASSWORD')
+assert os.getenv('VSD_OBJECTSTORE_PASSWORD')
 
 OBJECTSTORE_CONFIG = {
-    'user': 'bag_brk',
-    'key': os.getenv('BAG_BRK_OBJECTSTORE_PASSWORD', 'insecure'),
-    'tenant_name': 'BGE000081_BAG',
-    'tenant_id': '4f2f4b6342444c84b3580584587cfd18',
+    'user': 'vsd_user',
+    'key': os.getenv('VSD_OBJECTSTORE_PASSWORD', 'insecure'),
+    'tenant_name': 'BGE000081 VariousSmallDatasets',
+    'tenant_id': '4028c44d91dc48b8990069433c203c1f',
 }

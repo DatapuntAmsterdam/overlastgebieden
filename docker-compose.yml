@@ -19,7 +19,7 @@ services:
     links:
       - database
     environment:
-      BAG_BRK_OBJECTSTORE_PASSWORD: ${BAG_BRK_OBJECTSTORE_PASSWORD}
+      VSD_OBJECTSTORE_PASSWORD: ${VSD_OBJECTSTORE_PASSWORD}
       DATABASE_NAME: overlastgebieden
       DATABASE_USER: overlastgebieden
       DATABASE_PASSWORD: insecure
@@ -35,7 +35,7 @@ services:
     links:
       - database
     environment:
-      BAG_BRK_OBJECTSTORE_PASSWORD: ${BAG_BRK_OBJECTSTORE_PASSWORD}
+      VSD_OBJECTSTORE_PASSWORD: ${VSD_OBJECTSTORE_PASSWORD}
       DATABASE_NAME: overlastgebieden
       DATABASE_USER: overlastgebieden
       DATABASE_PASSWORD: insecure

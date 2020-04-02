@@ -11,7 +11,7 @@ en met een view beschikbaar gesteld voor de mapserver.
     pip install -r requirements.txt
 
     # Lookup the objectstore password in Rattic
-    export BAG_BRK_OBJECTSTORE_PASSWORD=xxxx
+    export VSD_OBJECTSTORE_PASSWORD=xxxx
 
     # start database
     docker-compose up -d database

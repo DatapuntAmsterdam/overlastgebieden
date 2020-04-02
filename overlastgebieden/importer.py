@@ -10,7 +10,7 @@ import psycopg2
 
 
 def run_import():
-    container = 'Diva/gebieden_shp'
+    container = 'overlastgebieden'
     download_dir = '/tmp/overlastgebieden/'
 
     objectstore.copy_file_from_objectstore(container=container,
